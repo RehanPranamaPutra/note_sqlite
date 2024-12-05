@@ -15,6 +15,7 @@ import com.rehan.noteapp.DetailNoteActivity
 import com.rehan.noteapp.R
 import com.rehan.noteapp.helper.NoteDatabaseHelper
 import com.rehan.noteapp.model.ModelNote
+import com.rehan.noteapp.screen.UpdateNoteActivity
 import org.w3c.dom.Text
 
 class NotesAdapter(
@@ -46,6 +47,15 @@ class NotesAdapter(
         val noteData = notes[position]
         holder.txtItemTitle.text = noteData.title
         holder.txtItemContent.text = noteData.content
+
+        //update
+        holder.btnEdit.setOnClickListener{
+            val intent = Intent(holder.itemView.context, UpdateNoteActivity::class.java).apply {
+                putExtra("note_id", noteData.id)
+            }
+            holder.itemView.context.startActivity(intent)
+        }
+
         holder.cardNotes.setOnClickListener(){
             val intent = Intent(holder.itemView.context,DetailNoteActivity::class.java)
             intent.putExtra("title",noteData.title)
@@ -73,10 +83,10 @@ class NotesAdapter(
                     dialogInterface.dismiss()
                 }
             }.show() //menampilkan alert dialog
+
+
         }
     }
-
-
 
     //fitur untuk auto refresh data
 

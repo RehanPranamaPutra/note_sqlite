@@ -69,7 +69,7 @@ class NoteDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         val db = writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_TITLE,note.title)
-            put(COLUMN_CONTENT,note.title)
+            put(COLUMN_CONTENT,note.content)
         }
 
         val whereClause = "$COLUMN_ID = ?"
@@ -101,4 +101,7 @@ class NoteDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         db.delete(TABLE_NAME, whereclause, whereArgs)
         db.close()
     }
+
+
+
 }
